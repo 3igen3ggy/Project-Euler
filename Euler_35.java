@@ -9,7 +9,7 @@ public class Main {
 
 		ArrayList<Integer> List = new ArrayList<Integer>();
 		
-		while (a < 100) {
+		while (a < 1000000) {
 			if(isRotPrime(a)) {
 				List.add(a);
 				counter++;
@@ -25,14 +25,15 @@ public class Main {
 		
 		int d = digits(a);
 		int i = 1;
-		
+
 		while (i <= d) {
 			if (!isPrime(a)) {
 				return false;
-			}
+			}		
 			a = rotate(a);
 			i++;
 		}
+		System.out.println(a + " is a rotational prime!");
 		return true;
 		
 	}
@@ -69,11 +70,21 @@ public class Main {
 	public static int rotate(int a) {
 		int d = digits(a);
 		int b = 0;
+		int newd = 0;
 		
 		for (int i = d; i > 1; i--) {
 			b+= Math.pow(10, i - 1) * digit(a, i - 1);
 		}
 		b += digit(a,d);
+		
+		newd = digits(b);
+		
+		if (newd < d) {
+			
+			b *= 10;
+			
+		}
+		
 		return b;
 	}
 }
